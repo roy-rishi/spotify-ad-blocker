@@ -24,16 +24,14 @@ on run argv
             delay 0.1
         end repeat
 
-        -- restart Spotify
-        tell application "Spotify" to activate
+        -- restart Spotify, without focussing its window
+        tell application "Spotify" to launch
 
         -- wait for Spotify to restart
-        tell application "System Events"
-            repeat until frontmost of process "Spotify" is true
-                delay 0.1
-            end repeat
-        end tell
-        delay 0.3
+        repeat until application "Spotify" is running
+            delay 0.1
+        end repeat
+        delay 0.2
 
         -- hide Spotify window if it was hidden prior to this script's execution
         tell application "System Events" to set visible of process "Spotify" to windowVisible
