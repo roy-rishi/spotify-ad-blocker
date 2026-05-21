@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.{DOMAIN}.spotifyadblocker</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>osascript</string>
+        <string>/Users/{USERNAME}/{PATH}/compiled.scpt</string>
+    </array>
+    <key>WatchPaths</key>
+    <array>
+        <string>/Users/{USERNAME}/Library/Application Support/Spotify/Users/{SPOTIFY_USER}/ad-state-storage.bnk</string>
+    </array>
+    <key>ThrottleInterval</key>
+    <integer>1</integer>
+    <key>StandardOutPath</key>
+    <string>/Users/{USERNAME}/{PATH}/stdout.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/{USERNAME}/{PATH}/stderr.log</string>
+</dict>
+</plist>

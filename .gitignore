@@ -1,0 +1,8 @@
+# Project
+compiled.scpt
+*.log
+out/
+
+# The usual
+.DS_Store
+.vscode/
