@@ -12,7 +12,10 @@ on run argv
     tell application "Spotify" to set spotifyUrl to (get spotify url of current track)
 
     -- get the visibility of the Spotify window
-    tell application "System Events" to set windowVisible to (visible of process "Spotify") 
+    tell application "System Events"
+        set windowVisibility to (visible of process "Spotify")
+        set windowFocus      to (frontmost of process "Spotify")
+    end tell
 
     -- if an ad is playing, or the test flag is set:
     if spotifyUrl begins with "spotify:ad" or testMode then
@@ -24,20 +27,29 @@ on run argv
             delay 0.1
         end repeat
 
-        -- restart Spotify, without focussing its window
+        -- restart Spotify, without making its window frontmost
         tell application "Spotify" to launch
 
         -- wait for Spotify to restart
         repeat until application "Spotify" is running
             delay 0.1
         end repeat
-        delay 0.2
 
-        -- hide Spotify window if it was hidden prior to this script's execution
-        tell application "System Events" to set visible of process "Spotify" to windowVisible
+        -- restore Spotify window visibility (hidden/visible, frontmost/unfocussed)
+        tell application "System Events"
+            repeat until visible of process "Spotify" is windowVisibility and frontmost of process "Spotify" is windowFocus
+                set visible   of process "Spotify" to windowVisibility
+                set frontmost of process "Spotify" to windowFocus
+                delay 0.1
+            end repeat
+        end tell
 
         -- start/resume playback
-        delay 0.5
-        tell application "Spotify" to play
+        tell application "Spotify"
+            repeat until (get player state) is playing
+                play
+                delay 0.1
+            end repeat
+        end tell
     end if
 end run
