@@ -1,7 +1,7 @@
 # Spotify Ad Blocker
 
 ## Architecture
-A LaunchAgent watches a file in the Spotify desktop application's `Application Support` directory for changes. This file updates when a new track or ad plays, providing a reliable and efficient way to trigger CPU utilization only when absolutely necessary. A small Applescript handles restarting the Spotify application if an ad is indeed playing, effectively blocking ads from getting any screentime. Between track changes, the only system overhead is that of `launchd`, which is negligible by any reasonable metric. 
+A LaunchAgent watches a file in the Spotify desktop application's `Application Support` directory for changes. This file updates when a new track or ad plays, providing a reliable and efficient way to trigger CPU utilization only when absolutely necessary. A small Applescript handles restarting the Spotify application if an ad is indeed playing, effectively blocking ads from any screentime. Between track changes, the only system overhead is that of `launchd`, which is negligible by any reasonable metric. 
 
 ## Setup
 ### Compile
