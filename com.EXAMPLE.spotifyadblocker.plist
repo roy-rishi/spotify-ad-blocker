@@ -6,8 +6,10 @@
     <string>com.{DOMAIN}.spotifyadblocker</string>
     <key>ProgramArguments</key>
     <array>
-        <string>osascript</string>
-        <string>{PATH}/compiled.scpt</string>
+        <string>/bin/zsh</string>
+        <string>-c</string>
+        <!-- log time (to stderr), then run AppleScript -->
+        <string>date '+[%H:%M:%S]' &gt;&amp;2 &amp;&amp; osascript {PATH}/compiled.scpt</string>
     </array>
     <key>WatchPaths</key>
     <array>
