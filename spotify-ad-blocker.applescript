@@ -65,4 +65,6 @@ on run argv
             end repeat
         end tell
     end if
+
+    log "done"
 end run
